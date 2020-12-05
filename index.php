@@ -22,8 +22,8 @@
        
         
        <?php
-      include './Menu.php';
-      include './Carrusel.php';
+      include '/presentacion/Menu.php';
+      include '/presentacion/Carrusel.php';
       ?>
        
         
@@ -47,7 +47,7 @@
             
         </div>
       <?php 
-     include './logins.php';
+     include '/presentacion/logins.php';
       ?>
        
       
