@@ -18,8 +18,8 @@
 
 
     <?php
-    include 'presentacion/Menu.php';
-    include 'presentacion/Carrusel.php';
+    include 'presentacion/menu.php';
+    include 'presentacion/carrusel.php';
     ?>
 
 
@@ -43,7 +43,7 @@
 
     </div>
     <?php
-    include 'presentacion/logins.php';
+    include 'presentacion/login.php';
     ?>
 
 
