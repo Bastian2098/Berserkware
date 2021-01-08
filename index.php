@@ -1,20 +1,15 @@
-<html>
-
+<!DOCTYPE html>
+<html lang="es">
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+<link rel="stylesheet" href="presentacion/style.css">
+<link rel="icon" type="image/png" href="img/img1.png">
 
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.11.1/css/all.css" />
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
-    <title>Berserkware</title>
-    <link rel="icon" type="image/png" href="img/img1.png">
-    <link rel="">
 </head>
-
 <body>
+<<<<<<< HEAD
 
 
     <?php
@@ -38,10 +33,40 @@
                     <h5>al alcance de tus manos</h5>
 
                 </div>
+=======
+<div class="container">
+    <div class="row justify-content-center pt-5 mt-5">
+        <div class="col-md-4 formulario">
+            <form action="">
+            <div class="form-group text-center">
+                <h1 class="text-light">Iniciar Sesión</h1>
+>>>>>>> master
             </div>
-        </div>
-
+            <div class="mb-3 pt-3">
+    <input type="email" class="form-control" id="exampleDropdownFormEmail2" placeholder="Usuario ">
+  </div>
+  <div class="mb-3 pt-3">
+    <input type="password" class="form-control" id="exampleDropdownFormPassword2" placeholder="Contraseña">
+  </div>
+  <div class="mb-3 pt-3">
+    <div class="form-check">
+      <input type="checkbox" class="form-check-input recordar" id="dropdownCheck2">
+      <label class="form-check-label text-light" for="dropdownCheck2">
+        Remember me
+      </label>
     </div>
+  </div>
+  <div class="form-group text-center pt-3 ">
+      <input type="submit" value="INGRESAR" class="btn btn-block ingresar">
+
+  </div> 
+  <div class="from-group text-center pt-3">
+      <a href="presentacion/usuariop.php">Ingresar admin</a>
+  </div>
+            </form>
+        </div>
+    </div>
+<<<<<<< HEAD
     <?php
     include 'presentacion/login.php';
     ?>
@@ -64,6 +89,10 @@
     <script>
         new WOW.init
     </script>
+=======
+</div>
+    
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>
+>>>>>>> master
 </body>
-
 </html>
