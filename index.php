@@ -9,12 +9,38 @@
 
 </head>
 <body>
+<<<<<<< HEAD
+
+
+    <?php
+    include 'presentacion/menu.php';
+    include 'presentacion/carrusel.php';
+    ?>
+
+
+
+    <div class="container-fluid bg-dark">
+        <div class="container w-50 pl-5 shadow-lg  mb-5 bg-white rounded">
+            <div class="row align-item-center">
+                <div class="col-sm  p-3 ">
+
+
+                    <img src="img/logo1.png" class="w-75 mx-auto d-block" alt="">
+
+                </div>
+                <div class="col-sm p-3 text-dark text-center">
+                    <h4>los mejores dispositivos</h4>
+                    <h5>al alcance de tus manos</h5>
+
+                </div>
+=======
 <div class="container">
     <div class="row justify-content-center pt-5 mt-5">
         <div class="col-md-4 formulario">
             <form action="">
             <div class="form-group text-center">
                 <h1 class="text-light">Iniciar Sesión</h1>
+>>>>>>> master
             </div>
             <div class="mb-3 pt-3">
     <input type="email" class="form-control" id="exampleDropdownFormEmail2" placeholder="Usuario ">
@@ -44,6 +70,30 @@
             </form>
         </div>
     </div>
+<<<<<<< HEAD
+    <?php
+    include 'presentacion/login.php';
+    ?>
+
+
+
+
+
+    <?php
+    // put your code here
+    ?>
+
+
+
+
+
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>
+    <script>
+        new WOW.init
+    </script>
+=======
 </div>
 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog">
@@ -66,5 +116,6 @@
 </div>
     
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>
+>>>>>>> master
 </body>
 </html>
