@@ -21,7 +21,11 @@ class administradoDAO{
     }
 
     function autenticar(){
-        return null;
+        return "SELECT ID_USUARIO_FK 
+                FROM Administrador AS a, Usuario AS u 
+                WHERE u.correo = '".$this->correo."' 
+                AND u.contraseña = '".$this->contraseña."' 
+                AND a.ID_USUARIO_FK = ".$this->id;
     }
 
     function consultarUsuario(){

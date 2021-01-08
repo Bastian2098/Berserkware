@@ -1,6 +1,6 @@
 <?php
 
-abstract class usuario{
+abstract class Usuario{
 
     protected $id;
     protected $nombre;
@@ -9,20 +9,12 @@ abstract class usuario{
     protected $direccion;
     protected $correo;
     protected $contraseña;
-
-    abstract protected function Usuario($_id="", $_nombre="", $_cc="", $_telefono="", $_direccion="", $_correo="", $_contraseña="");
-    abstract protected function getId();
-    abstract protected function getNombre();
-    abstract protected function getCc();
-    abstract protected function getTelefono();
-    abstract protected function getDireccion();
-    abstract protected function getCorreo();
-    abstract protected function getContraseña();
-    abstract protected function autenticar();
-    abstract protected function consultarUsuario();
-    abstract protected function modificarUsuario();
-    abstract protected function crearUsuario();
-    abstract protected function inhabilitarUsuario();
+    
+    abstract public function autenticar();
+    abstract public function consultarUsuario();
+    abstract public function modificarUsuario();
+    abstract public function crearUsuario();
+    abstract public function inhabilitarUsuario();
 
 }
 

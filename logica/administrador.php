@@ -2,11 +2,11 @@
 
 require "persistencia/administradorDAO.php";
 
-class Administrador extends usuario{
+class Administrador extends Usuario{
 
     private $administradorDAO;
 
-    function Usuario($_id="", $_nombre="", $_cc="", $_telefono="", $_direccion="", $_correo="", $_contraseña=""){
+    function Administrador($_id="", $_nombre="", $_cc="", $_telefono="", $_direccion="", $_correo="", $_contraseña=""){
         $this->id = $_id;
         $this->nombre = $_nombre;
         $this->cc = $_cc;
@@ -44,8 +44,17 @@ class Administrador extends usuario{
         return $this->contraseña;
     }
 
-    function autenticar(){
-        return null;
+    public function autenticar(){
+        $this -> conexion -> abrir();
+        $this -> conexion -> ejecutar($this -> administradorDAO -> autenticar());
+        echo $this -> administradorDAO -> autenticar();
+        $this -> conexion -> cerrar();
+        if($this -> conexion -> numFilas() == 1){
+            $this -> idAdministrador = $this -> conexion -> extraer()[0];
+            return true;
+        }else{
+            return false;
+        }
     }
 
     function consultarUsuario(){

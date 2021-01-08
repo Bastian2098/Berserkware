@@ -2,7 +2,7 @@
 
 require "persistencia/usuarioComunDAO.php";
 
-class usuarioComun extends usuario{
+class usuarioComun extends Usuario{
 
     private $usuarioComunDAO;
 

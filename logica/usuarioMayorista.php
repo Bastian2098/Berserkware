@@ -2,7 +2,7 @@
 
 require "persistencia/usuarioMayoristaDAO.php";
 
-class usuarioComun extends usuario{
+class usuarioComun extends Usuario{
 
     private $nit;
     private $numTarjeta;

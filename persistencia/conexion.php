@@ -1,5 +1,7 @@
 <?php
+
 class Conexion{
+    
     private $mysqli;
     private $resultado;
     
@@ -24,3 +26,5 @@ class Conexion{
         return ($this -> resultado != null) ? $this -> resultado -> num_rows : 0; 
     }
 }
+
+?>
