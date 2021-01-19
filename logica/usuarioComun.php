@@ -1,12 +1,14 @@
 <?php
 
-require "persistencia/usuarioComunDAO.php";
+require_once(PERSISTENCE_PATH."usuarioComunDAO.php");
+require_once("usuario.php");
 
-class usuarioComun extends Usuario{
+class UsuarioComun extends Usuario{
 
     private $usuarioComunDAO;
+    private $conexion;
 
-    function Usuario($_id="", $_nombre="", $_cc="", $_telefono="", $_direccion="", $_correo="", $_contraseña=""){
+    function UsuarioComun($_id="", $_nombre="", $_cc="", $_telefono="", $_direccion="", $_correo="", $_contraseña=""){
         $this->id = $_id;
         $this->nombre = $_nombre;
         $this->cc = $_cc;
@@ -14,6 +16,8 @@ class usuarioComun extends Usuario{
         $this->direccion = $_direccion;
         $this->correo = $_correo;
         $this->contraseña = $_contraseña;
+        $this->conexion = new Conexion();
+        $this->usuarioComunDAO = new UsuarioComunDAO($_id,$_nombre,$_cc,$_telefono,$_direccion,$_correo,$_contraseña);
     }
 
     function getId(){
@@ -45,11 +49,36 @@ class usuarioComun extends Usuario{
     }
 
     function autenticar(){
-        return null;
+        $this->conexion->abrir();
+        $this->conexion->ejecutar($this->usuarioComunDAO->autenticar());
+        $this->conexion->cerrar();
+        if($this->conexion->numFilas() == 1){
+            $this->id = $this->conexion->extraer()[0];
+            $this->usuarioComunDAO->setId($this->id);
+            return true;
+        }else{
+            return false;
+        }
+    }
+
+    function consultarComun(){
+        $this->conexion->abrir();
+        $this->conexion->ejecutar($this->usuarioComunDAO->consultarComun());
+        $this->conexion->cerrar();
+        if($this->conexion->numFilas() == 1){
+            $this->id = $this->conexion->extraer()[0];
+            return true;
+        }else{
+            return false;
+        }
     }
 
     function consultarUsuario(){
-        return null;
+        $this->conexion->abrir();
+        $this->conexion->ejecutar($this->usuarioComunDAO->consultarUsuario());
+        $this->conexion->cerrar();
+        $resultado = $this->conexion->extraer();
+        $this->nombre = $resultado[0];
     }
 
     function modificarUsuario(){
@@ -57,7 +86,24 @@ class usuarioComun extends Usuario{
     }
 
     function crearUsuario(){
-        return null;
+        $this->conexion->abrir();
+        $this->conexion->ejecutar($this->usuarioComunDAO->crearUsuario());
+        $this->conexion->cerrar();
+    }
+
+    function asignarTipoUsuario(){
+        $this->conexion->abrir();
+        $this->conexion->ejecutar($this->usuarioComunDAO->asignarUsuarioComun());
+        $this->conexion->cerrar();
+    }
+
+    function consultarIDUsuario(){
+        $this->conexion->abrir();
+        $this->conexion->ejecutar($this->usuarioComunDAO->consultarIDUsuario());
+        $this->conexion->cerrar();
+        $resultado = $this->conexion->extraer();
+        $this->id = $resultado[0];
+        $this->usuarioComunDAO->setId($this->id);
     }
 
     function inhabilitarUsuario(){
