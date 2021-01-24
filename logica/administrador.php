@@ -1,10 +1,12 @@
 <?php
 
-require "persistencia/administradorDAO.php";
+require_once(PERSISTENCE_PATH."administradorDAO.php");
+require_once("usuario.php");
 
 class Administrador extends Usuario{
 
     private $administradorDAO;
+    private $conexion;
 
     function Administrador($_id="", $_nombre="", $_cc="", $_telefono="", $_direccion="", $_correo="", $_contraseña=""){
         $this->id = $_id;
@@ -14,6 +16,8 @@ class Administrador extends Usuario{
         $this->direccion = $_direccion;
         $this->correo = $_correo;
         $this->contraseña = $_contraseña;
+        $this->conexion = new Conexion();
+        $this->administradorDAO = new AdministradorDAO($_id, $_nombre, $_cc, $_telefono, $_direccion, $_correo, $_contraseña);
     }
 
     function getId(){
@@ -44,13 +48,25 @@ class Administrador extends Usuario{
         return $this->contraseña;
     }
 
-    public function autenticar(){
-        $this -> conexion -> abrir();
-        $this -> conexion -> ejecutar($this -> administradorDAO -> autenticar());
-        echo $this -> administradorDAO -> autenticar();
-        $this -> conexion -> cerrar();
-        if($this -> conexion -> numFilas() == 1){
-            $this -> idAdministrador = $this -> conexion -> extraer()[0];
+    function autenticar(){
+        $this->conexion->abrir();
+        $this->conexion->ejecutar($this->administradorDAO->autenticar());
+        $this->conexion->cerrar();
+        if($this->conexion->numFilas() == 1){
+            $this->id = $this->conexion->extraer()[0];
+            $this->administradorDAO->setId($this->id);
+            return true;
+        }else{
+            return false;
+        }
+    }
+
+    function consultarAdmin(){
+        $this->conexion->abrir();
+        $this->conexion->ejecutar($this->administradorDAO->consultarAdmin());
+        $this->conexion->cerrar();
+        if($this->conexion->numFilas() == 1){
+            $this->id = $this->conexion->extraer()[0];
             return true;
         }else{
             return false;
@@ -58,7 +74,11 @@ class Administrador extends Usuario{
     }
 
     function consultarUsuario(){
-        return null;
+        $this->conexion->abrir();
+        $this->conexion->ejecutar($this->administradorDAO->consultarUsuario());
+        $this->conexion->cerrar();
+        $resultado = $this->conexion->extraer();
+        $this->nombre = $resultado[0];
     }
 
     function modificarUsuario(){
@@ -66,7 +86,24 @@ class Administrador extends Usuario{
     }
 
     function crearUsuario(){
-        return null;
+        $this->conexion->abrir();
+        $this->conexion->ejecutar($this->administradorDAO->crearUsuario());
+        $this->conexion->cerrar();
+    }
+
+    function asignarTipoUsuario(){
+        $this->conexion->abrir();
+        $this->conexion->ejecutar($this->administradorDAO->asignarUsuarioAdmin());
+        $this->conexion->cerrar();
+    }
+
+    function consultarIDUsuario(){
+        $this->conexion->abrir();
+        $this->conexion->ejecutar($this->administradorDAO->consultarIDUsuario());
+        $this->conexion->cerrar();
+        $resultado = $this->conexion->extraer();
+        $this->id = $resultado[0];
+        $this->administradorDAO->setId($this->id);
     }
     
     function inhabilitarUsuario(){

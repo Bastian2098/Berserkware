@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Dec 06, 2020 at 02:53 AM
+-- Generation Time: Jan 23, 2021 at 04:33 AM
 -- Server version: 10.4.14-MariaDB
 -- PHP Version: 7.4.11
 
@@ -24,6 +24,23 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `Administrador`
+--
+
+CREATE TABLE `Administrador` (
+  `ID_USUARIO_FK` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `Administrador`
+--
+
+INSERT INTO `Administrador` (`ID_USUARIO_FK`) VALUES
+(1);
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `Categoria`
 --
 
@@ -31,6 +48,13 @@ CREATE TABLE `Categoria` (
   `ID_CATEGORIA` int(11) NOT NULL,
   `nombreComponente` varchar(30) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `Categoria`
+--
+
+INSERT INTO `Categoria` (`ID_CATEGORIA`, `nombreComponente`) VALUES
+(1, 'Procesador');
 
 -- --------------------------------------------------------
 
@@ -41,6 +65,13 @@ CREATE TABLE `Categoria` (
 CREATE TABLE `Comun` (
   `ID_USUARIO_FK` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `Comun`
+--
+
+INSERT INTO `Comun` (`ID_USUARIO_FK`) VALUES
+(68);
 
 -- --------------------------------------------------------
 
@@ -67,6 +98,13 @@ CREATE TABLE `Marca` (
   `linea` varchar(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Dumping data for table `Marca`
+--
+
+INSERT INTO `Marca` (`ID_MARCA`, `nombre`, `linea`) VALUES
+(1, 'AMD', 'Ryzen');
+
 -- --------------------------------------------------------
 
 --
@@ -90,6 +128,13 @@ CREATE TABLE `Modelo` (
   `referencia` varchar(10) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Dumping data for table `Modelo`
+--
+
+INSERT INTO `Modelo` (`ID_MODELO`, `referencia`) VALUES
+(1, '3600');
+
 -- --------------------------------------------------------
 
 --
@@ -101,9 +146,17 @@ CREATE TABLE `Producto` (
   `numLote` varchar(10) NOT NULL,
   `numSerie` varchar(10) NOT NULL,
   `precio` int(11) NOT NULL,
-  `descripcion` int(100) NOT NULL,
-  `cantidad` int(11) NOT NULL
+  `descripcion` varchar(100) NOT NULL,
+  `cantidad` int(11) NOT NULL,
+  `imagen` varchar(30) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `Producto`
+--
+
+INSERT INTO `Producto` (`ID_PRODUCTO`, `numLote`, `numSerie`, `precio`, `descripcion`, `cantidad`, `imagen`) VALUES
+(1, '1000', '', 700000, 'Procesador Ryzen 5 3600 6 nucleos 12 Hilos con Wraith Stealth Cooler', 100, 'img/Ryzen3600.jpeg');
 
 -- --------------------------------------------------------
 
@@ -116,6 +169,13 @@ CREATE TABLE `Pro_Cat` (
   `ID_CATEGORIA_FK` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Dumping data for table `Pro_Cat`
+--
+
+INSERT INTO `Pro_Cat` (`ID_PRODUCTO_FK`, `ID_CATEGORIA_FK`) VALUES
+(1, 1);
+
 -- --------------------------------------------------------
 
 --
@@ -127,6 +187,13 @@ CREATE TABLE `Pro_Mar` (
   `ID_MARCA_FK` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Dumping data for table `Pro_Mar`
+--
+
+INSERT INTO `Pro_Mar` (`ID_PRODUCTO_FK`, `ID_MARCA_FK`) VALUES
+(1, 1);
+
 -- --------------------------------------------------------
 
 --
@@ -137,6 +204,13 @@ CREATE TABLE `Pro_Mod` (
   `ID_PRODUCTO_FK` int(11) NOT NULL,
   `ID_MODELO_FK` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `Pro_Mod`
+--
+
+INSERT INTO `Pro_Mod` (`ID_PRODUCTO_FK`, `ID_MODELO_FK`) VALUES
+(1, 1);
 
 -- --------------------------------------------------------
 
@@ -150,13 +224,27 @@ CREATE TABLE `Usuario` (
   `cc` varchar(10) NOT NULL,
   `direccion` varchar(30) NOT NULL,
   `correo` varchar(30) NOT NULL,
-  `contraseña` varchar(20) NOT NULL,
+  `contraseña` varchar(64) NOT NULL,
   `telefono` varchar(15) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
+-- Dumping data for table `Usuario`
+--
+
+INSERT INTO `Usuario` (`ID_USUARIO`, `nombre`, `cc`, `direccion`, `correo`, `contraseña`, `telefono`) VALUES
+(1, 'Joan Sebastian Samaca Bautista', '1023966598', 'Calle 77 sur #14 - 32 int 2', 'jssb.2098@gmail.com', '980220', '3507269772'),
+(68, 'Karen Daniela Velez', '102457951', 'calle 64 sur 72f', 'karendave@outlook.com', '15e2b0d3c33891ebb0f1ef609ec419420c20e320ce94c65fbc8c3312448eb225', '3008511627');
+
+--
 -- Indexes for dumped tables
 --
+
+--
+-- Indexes for table `Administrador`
+--
+ALTER TABLE `Administrador`
+  ADD KEY `usuarioFK` (`ID_USUARIO_FK`);
 
 --
 -- Indexes for table `Categoria`
@@ -236,7 +324,7 @@ ALTER TABLE `Usuario`
 -- AUTO_INCREMENT for table `Categoria`
 --
 ALTER TABLE `Categoria`
-  MODIFY `ID_CATEGORIA` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `ID_CATEGORIA` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `Log`
@@ -248,29 +336,35 @@ ALTER TABLE `Log`
 -- AUTO_INCREMENT for table `Marca`
 --
 ALTER TABLE `Marca`
-  MODIFY `ID_MARCA` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `ID_MARCA` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `Modelo`
 --
 ALTER TABLE `Modelo`
-  MODIFY `ID_MODELO` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `ID_MODELO` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `Producto`
 --
 ALTER TABLE `Producto`
-  MODIFY `ID_PRODUCTO` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `ID_PRODUCTO` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `Usuario`
 --
 ALTER TABLE `Usuario`
-  MODIFY `ID_USUARIO` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `ID_USUARIO` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=69;
 
 --
 -- Constraints for dumped tables
 --
+
+--
+-- Constraints for table `Administrador`
+--
+ALTER TABLE `Administrador`
+  ADD CONSTRAINT `Administrador_ibfk_1` FOREIGN KEY (`ID_USUARIO_FK`) REFERENCES `Usuario` (`ID_USUARIO`);
 
 --
 -- Constraints for table `Comun`

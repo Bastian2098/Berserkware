@@ -1,0 +1,250 @@
+body{
+
+    background-image: url(../img/fondo_login.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+
+}
+   
+.formulario{
+
+    background: rgba(0,0,0, .5);
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 30px rgba(0,0,0,0.568) ;
+    color: white;
+
+}
+
+.form-control{
+
+    background: rgba(0,0,0,0.3);
+    /*border-style: none;*/
+    border: 3px solid transparent;
+    border-radius: 3px;
+    transition: 00.3s ease all;
+    /*outline: none;
+    box-shadow: none;*/
+
+}
+
+.form-control:focus{
+
+    background: black;
+    /*box-shadow: none;
+    outline: none;*/
+    color: white;
+    border: 3px solid #0075ff;
+
+}
+
+.form-control::placeholder{
+
+    color: white;
+
+}
+
+.inputU-incorrect .form-control{
+
+    border: 3px solid #bb2929;
+
+} 
+
+.inputU{
+
+    position: relative;
+
+}
+
+.inputU-correct .iconoCheck{
+
+    color: #1ed12d;
+    opacity: 1;
+
+}
+
+.inputU-incorrect .iconoCheck{
+
+    color: #bb2929;
+    bottom: 15px;
+    opacity: 1;
+
+}
+
+.iconoCheck{
+
+    position: absolute;
+    right: 10px;
+    bottom: 15px;
+    z-index: 100;
+    font-size: 16px;
+    opacity: 0;
+
+}
+
+.errorMsg{
+
+    font-size: 12px;
+    margin-top: 0;
+    margin-bottom: 0;
+    display: none;
+
+}
+
+.errorMsg-active{
+
+    position: absolute;
+    display: ruby;
+
+}
+
+.errorMsgFull{
+
+    height: 45px;
+    line-height: 45px;
+    background: #f66060;
+    padding: 0 15px;
+    /*border-radius: 3px;*/
+    display: none;
+
+}
+
+.errorMsgFull-active{
+
+    display: block;
+
+}
+
+.errorMsgLogin{
+
+    height: 45px;
+    line-height: 45px;
+    background: #f66060;
+    padding: 0 15px;
+    /*border-radius: 3px;*/
+    display: block;
+
+}
+
+.ingresar{
+
+    background-color: #778899;
+    font-size: 16px;
+    color:white;
+    font-weight: 700! important;
+    box-shadow: 0 0 30px rgba(0,0,0,0.568) ;
+    transition: 0.3s ease-in;
+
+}
+
+.ingresar:hover{
+
+    color: white;
+
+}
+
+.recordar{
+     
+    box-shadow: none;
+    outline: none;
+    transition: 00.3s ease-in;
+   
+}
+
+.modal-header{
+
+    background-color: black;
+    border: none;
+
+}
+
+.modal-body{
+
+    background: rgba(0,0,0, .5);
+    box-shadow: 0 0 30px rgba(0,0,0,0.568) ;
+    transition: 0.3s ease-in;
+    border: none;
+
+}
+
+.modal-footer{
+
+    background-color: black; 
+    box-shadow: 0 0 30px rgba(0,0,0,0.568) ;
+    transition: 0.3s ease-in;
+    border: none;
+
+}
+
+.modal-title{
+
+    color: white;
+    font-size: 30px;
+
+}
+
+.modal-content{
+
+    border: none;
+    box-shadow: 0 0 40px rgba(0,0,2,0.23);
+
+}
+
+.boton_registro{
+
+    background-color: crimson;
+    border-color: black;
+       
+}
+
+.btn-close{
+
+    background-color: cornsilk;
+
+}
+
+.header .navbar {
+
+    background-color: transparent !important;
+
+}
+
+.navbar-brand{
+
+    font-size: 35px;
+    font-style: italic;
+         
+}
+
+.nav-item{
+
+    font-size: 25px;
+    color: white;
+    font-style: italic;
+
+}
+
+.boton_info{
+
+    font-size: 18px;
+    background-color: transparent !important;
+    border: none;
+   
+}
+
+.boton_cliente{
+
+    font-size: 18px;
+    background-color: transparent !important;
+    border: none;
+   
+}
+
+.boton_contacto{
+
+    background-color: transparent !important;
+    border: none;
+    font-size: 18px;
+
+}
