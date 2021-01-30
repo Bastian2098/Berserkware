@@ -38,16 +38,36 @@ class UsuarioMayoristaDAO{
         return "select nombre from Usuario where ID_USUARIO = '".$this->id."'";
     }
 
+    function consultarTodo(){
+        return "select nombre, cc, direccion, telefono from Usuario where ID_USUARIO = '".$this->id."'";
+    }
+
     function modificarUsuario(){
         return null;
+    }
+
+    function modificarNombre($nuevoNombre){
+        return "update Usuario set nombre = '".$nuevoNombre."' where ID_USUARIO = '".$this->id."'";
+    }
+
+    function modificarCc($nuevoCc){
+        return "update Usuario set cc = '".$nuevoCc."' where ID_USUARIO = '".$this->id."'";
+    }
+
+    function modificarDireccion($nuevoDireccion){
+        return "update Usuario set direccion = '".$nuevoDireccion."' where ID_USUARIO = '".$this->id."'";
+    }
+
+    function modificarTelefono($nuevoTelefono){
+        return "update Usuario set telefono = '".$nuevoTelefono."' where ID_USUARIO = '".$this->id."'";
     }
 
     function crearUsuario(){
         return "insert into Usuario (contraseña, cc, direccion, correo, nombre, telefono, nit, numTarjeta) values ('".$this->contraseña."', '".$this->cc."', '".$this->direccion."', '".$this->correo."', '".$this->nombre."','".$this->telefono.", '".$this->nit."','".$this->numTarjeta."')";
     }
 
-    function asignarUsuarioComun(){
-        return "insert into Mayorista (ID_USUARIO_FK) values ('".$this->id."')";
+    function asignarMayorista(){
+        return "insert into Mayorista (ID_USUARIO_FK, NIT, numTarjeta) values ('".$this->id."', '".$this->nit."', '".$this->numTarjeta."')";
     }
 
     function consultarIDUsuario(){

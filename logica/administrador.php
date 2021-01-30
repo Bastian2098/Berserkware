@@ -7,8 +7,9 @@ class Administrador extends Usuario{
 
     private $administradorDAO;
     private $conexion;
+    private $estado;
 
-    function Administrador($_id="", $_nombre="", $_cc="", $_telefono="", $_direccion="", $_correo="", $_contraseña=""){
+    function Administrador($_id="", $_nombre="", $_cc="", $_telefono="", $_direccion="", $_correo="", $_contraseña="", $_estado=""){
         $this->id = $_id;
         $this->nombre = $_nombre;
         $this->cc = $_cc;
@@ -16,6 +17,7 @@ class Administrador extends Usuario{
         $this->direccion = $_direccion;
         $this->correo = $_correo;
         $this->contraseña = $_contraseña;
+        $this->estado = $_estado;
         $this->conexion = new Conexion();
         $this->administradorDAO = new AdministradorDAO($_id, $_nombre, $_cc, $_telefono, $_direccion, $_correo, $_contraseña);
     }
@@ -48,6 +50,10 @@ class Administrador extends Usuario{
         return $this->contraseña;
     }
 
+    function getEstado(){
+        return $this->estado;
+    }
+
     function autenticar(){
         $this->conexion->abrir();
         $this->conexion->ejecutar($this->administradorDAO->autenticar());
@@ -77,12 +83,58 @@ class Administrador extends Usuario{
         $this->conexion->abrir();
         $this->conexion->ejecutar($this->administradorDAO->consultarUsuario());
         $this->conexion->cerrar();
+        $usuarios = array();
+        while(($resultado = $this->conexion->extraer()) != null){
+            array_push($usuarios, new Administrador($resultado[0], $resultado[1], "", "", "", $resultado[2],"", $resultado[3]));
+        }
+        return $usuarios;
+    }
+
+    function consultarEstado(){
+        $this->conexion->abrir();
+        $this->conexion->ejecutar($this->administradorDAO->consultarEstado());
+        $this->conexion->cerrar();
+        $resultado = $this->conexion->extraer();
+        $this->estado = $resultado[0];
+    }
+
+    function consultarTodo(){
+        $this->conexion->abrir();
+        $this->conexion->ejecutar($this->administradorDAO->consultarTodo());
+        $this->conexion->cerrar();
         $resultado = $this->conexion->extraer();
         $this->nombre = $resultado[0];
+        $this->cc = $resultado[1];
+        $this->direccion = $resultado[2];
+        $this->telefono = $resultado[3];
     }
 
     function modificarUsuario(){
         return null;
+    }
+
+    function modificarNombre($nuevoNombre){
+        $this->conexion->abrir();
+        $this->conexion->ejecutar($this->administradorDAO->modificarNombre($nuevoNombre));
+        $this->conexion->cerrar();
+    }
+
+    function modificarCc($nuevoCc){
+        $this->conexion->abrir();
+        $this->conexion->ejecutar($this->administradorDAO->modificarCc($nuevoCc));
+        $this->conexion->cerrar();
+    }
+
+    function modificarDireccion($nuevoDireccion){
+        $this->conexion->abrir();
+        $this->conexion->ejecutar($this->administradorDAO->modificarDireccion($nuevoDireccion));
+        $this->conexion->cerrar();
+    }
+
+    function modificarTelefono($nuevoTelefono){
+        $this->conexion->abrir();
+        $this->conexion->ejecutar($this->administradorDAO->modificarTelefono($nuevoTelefono));
+        $this->conexion->cerrar();
     }
 
     function crearUsuario(){
@@ -106,8 +158,16 @@ class Administrador extends Usuario{
         $this->administradorDAO->setId($this->id);
     }
     
-    function inhabilitarUsuario(){
-        return null;
+    function inhabilitarUsuario($estado){
+        $this->conexion->abrir();
+        $this->conexion->ejecutar($this->administradorDAO->inhabilitarUsuario($estado));
+        $this->conexion->cerrar();
+    }
+
+    function eliminarComun(){
+        $this->conexion->abrir();
+        $this->conexion->ejecutar($this->administradorDAO->eliminarComun());
+        $this->conexion->cerrar();
     }
 
 }

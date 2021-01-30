@@ -13,17 +13,31 @@ $comun = new UsuarioComun("", "", "", "", "", $correo, $contraseña);
 $mayorista = new UsuarioMayorista("", "", "", "", "", $correo, $contraseña, "", "");
 
 if (($administrador->autenticar() == true) && ($administrador->consultarAdmin() == true)) {
-    $_SESSION["id"] = $administrador->getId();
-    $_SESSION["rol"] = "Administrador";
-    header("Location: index.php?id=presentacion/sesion.php");
+    if($administrador->consultarEstado() == 0){
+        $_SESSION["id"] = $administrador->getId();
+        $_SESSION["rol"] = "Administrador";
+        header("Location: index.php?id=presentacion/sesion.php");
+    }else{
+        header("Location: index.php?error=2");
+    }
 } else if (($comun->autenticar() == true) && ($comun->consultarComun() == true)) {
-    $_SESSION["id"] = $comun->getId();
-    $_SESSION["rol"] = "Comun";
-    header("Location: index.php?id=presentacion/sesion.php");
+    if($administrador->consultarEstado() == 0){
+        $_SESSION["id"] = $comun->getId();
+        $_SESSION["rol"] = "Comun";
+        header("Location: index.php?id=presentacion/sesion.php");
+    }else{
+        header("Location: index.php?error=2");
+    }
 } else if (($mayorista->autenticar() == true) && ($mayorista->consultarMayorista() == true)) {
-    $_SESSION["id"] = $mayorista->getId();
-    $_SESSION["rol"] = "Mayorista";
-    header("Location: index.php?id=presentacion/sesion.php");
+    if($administrador->consultarEstado() == 0){
+        $_SESSION["id"] = $mayorista->getId();
+        $_SESSION["rol"] = "Mayorista";
+        header("Location: index.php?id=presentacion/sesion.php");
+    }else{
+        header("Location: index.php?error=2");
+    }
 } else {
     header("Location: index.php?error=1");
 }
+
+?>

@@ -93,8 +93,43 @@ class UsuarioMayorista extends Usuario{
         $this->nombre = $resultado[0];
     }
 
+    function consultarTodo(){
+        $this->conexion->abrir();
+        $this->conexion->ejecutar($this->usuarioMayoristaDAO->consultarTodo());
+        $this->conexion->cerrar();
+        $resultado = $this->conexion->extraer();
+        $this->nombre = $resultado[0];
+        $this->cc = $resultado[1];
+        $this->direccion = $resultado[2];
+        $this->telefono = $resultado[3];
+    }
+
     function modificarUsuario(){
         return null;
+    }
+
+    function modificarNombre($nuevoNombre){
+        $this->conexion->abrir();
+        $this->conexion->ejecutar($this->usuarioMayoristaDAO->modificarNombre($nuevoNombre));
+        $this->conexion->cerrar();
+    }
+
+    function modificarCc($nuevoCc){
+        $this->conexion->abrir();
+        $this->conexion->ejecutar($this->usuarioMayoristaDAO->modificarCc($nuevoCc));
+        $this->conexion->cerrar();
+    }
+
+    function modificarDireccion($nuevoDireccion){
+        $this->conexion->abrir();
+        $this->conexion->ejecutar($this->usuarioMayoristaDAO->modificarDireccion($nuevoDireccion));
+        $this->conexion->cerrar();
+    }
+
+    function modificarTelefono($nuevoTelefono){
+        $this->conexion->abrir();
+        $this->conexion->ejecutar($this->usuarioMayoristaDAO->modificarTelefono($nuevoTelefono));
+        $this->conexion->cerrar();
     }
 
     function crearUsuario(){
@@ -105,7 +140,7 @@ class UsuarioMayorista extends Usuario{
 
     function asignarTipoUsuario(){
         $this->conexion->abrir();
-        $this->conexion->ejecutar($this->usuarioMayoristaDAO->asignarUsuarioMayorista());
+        $this->conexion->ejecutar($this->usuarioMayoristaDAO->asignarMayorista());
         $this->conexion->cerrar();
     }
 

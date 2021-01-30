@@ -14,7 +14,7 @@ abstract class Usuario{
     abstract public function consultarUsuario();
     abstract public function modificarUsuario();
     abstract public function crearUsuario();
-    abstract public function inhabilitarUsuario();
+    //abstract public function inhabilitarUsuario();
     abstract public function asignarTipoUsuario();
 
 }

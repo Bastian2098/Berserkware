@@ -35,11 +35,39 @@ class AdministradorDAO{
     }
 
     function consultarUsuario(){
-        return "select nombre from Usuario where ID_USUARIO = '".$this->id."'";
+        return "select ID_USUARIO, nombre, correo, estado from Usuario";
+    }
+
+    function consultarEstado(){
+        return "select estado from Usuario where ID_USUARIO = ".$this->id."";
+    }
+
+    function eliminarComun(){
+        return "delete from Comun where ID_USUARIO_FK = ".$this->id;
+    }
+
+    function consultarTodo(){
+        return "select nombre, cc, direccion, telefono from Usuario where ID_USUARIO = '".$this->id."'";
     }
 
     function modificarUsuario(){
         return null;
+    }
+
+    function modificarNombre($nuevoNombre){
+        return "update Usuario set nombre = '".$nuevoNombre."' where ID_USUARIO = '".$this->id."'";
+    }
+
+    function modificarCc($nuevoCc){
+        return "update Usuario set cc = '".$nuevoCc."' where ID_USUARIO = '".$this->id."'";
+    }
+
+    function modificarDireccion($nuevoDireccion){
+        return "update Usuario set direccion = '".$nuevoDireccion."' where ID_USUARIO = '".$this->id."'";
+    }
+
+    function modificarTelefono($nuevoTelefono){
+        return "update Usuario set telefono = '".$nuevoTelefono."' where ID_USUARIO = '".$this->id."'";
     }
 
     function crearUsuario(){
@@ -54,8 +82,8 @@ class AdministradorDAO{
         return "select ID_USUARIO from Usuario where cc = '".$this->cc."'";
     }
 
-    function inhabilitarUsuario(){
-        return null;
+    function inhabilitarUsuario($estado){
+        return "update Usuario set estado = '".$estado."' where ID_USUARIO = '".$this->id."'";
     }
 
 }
