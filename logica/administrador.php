@@ -98,6 +98,14 @@ class Administrador extends Usuario{
         $this->estado = $resultado[0];
     }
 
+    function consultarNombre(){
+        $this->conexion->abrir();
+        $this->conexion->ejecutar($this->administradorDAO->consultarNombre());
+        $this->conexion->cerrar();
+        $resultado = $this->conexion->extraer();
+        $this->nombre = $resultado[0];
+    }
+
     function consultarTodo(){
         $this->conexion->abrir();
         $this->conexion->ejecutar($this->administradorDAO->consultarTodo());

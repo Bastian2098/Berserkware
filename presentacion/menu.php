@@ -4,6 +4,7 @@ require_once("./dirs.php");
 require(LOGIC_PATH . "usuarioComun.php");
 require(LOGIC_PATH . "usuarioMayorista.php");
 require(LOGIC_PATH . "administrador.php");
+require(LOGIC_PATH."log.php");
 
 switch ($_SESSION["rol"]) {
   case "Administrador":
@@ -40,6 +41,7 @@ switch ($_SESSION["rol"]) {
         <?php if ($_SESSION["rol"] == "Administrador") { ?>
           <a type="button" data-bs-toggle="modal" data-bs-target="#usersModal"><i class="fas fa-users-cog"></i></a>
           <a type="button" data-bs-toggle="modal" data-bs-target="#mayoristaModal"><i class="fas fa-people-arrows"></i></a>
+          <a type="button" data-bs-toggle="modal" data-bs-target="#logModal"><i class="fas fa-stream"></i></a>
         <?php } ?>
       </div>
     </nav>
@@ -101,19 +103,19 @@ switch ($_SESSION["rol"]) {
             $usuarios = $usuarioActual->consultarUsuario();
             foreach ($usuarios as $usuario) {
               echo "<tr>
-                        <td>" . $usuario->getId() . "</td>
-                        <td>" . $usuario->getNombre() . "</td>
-                        <td>" . $usuario->getCorreo() . "</td>
-                        <td>
-                          <div class='iconoEstado' id='" . $usuario->getId() . "'>
-                            <a type='button'>
-                              " . (($usuario->getEstado() == 0) ? "
-                              <i id='0' class='fas fa-user-check' data-toggle='tooltip' title='Habilitado'></i>" : "
-                              <i id='1' class='fas fa-user-times' data-toggle='tooltip' title='Deshabilitado'></i>") . "
-                            </a>
-                          </div>
-                        </td>
-                      </tr>";
+                      <td>" . $usuario->getId() . "</td>
+                      <td>" . $usuario->getNombre() . "</td>
+                      <td>" . $usuario->getCorreo() . "</td>
+                      <td>
+                        <div class='iconoEstado' id='" . $usuario->getId() . "'>
+                          <a type='button'>
+                            " . (($usuario->getEstado() == 0) ? "
+                            <i id='0' class='fas fa-user-check' data-toggle='tooltip' title='Habilitado'></i>" : "
+                            <i id='1' class='fas fa-user-times' data-toggle='tooltip' title='Deshabilitado'></i>") . "
+                          </a>
+                        </div>
+                      </td>
+                    </tr>";
             }
             ?>
           </tbody>
@@ -128,7 +130,7 @@ switch ($_SESSION["rol"]) {
   <div class="modal-dialog modal-lg">
     <div class="modal-content">
       <div class="modal-header">
-        <i class="fas fa-users fa-2x" style="color: white"></i>
+        <i class="fas fa-user-edit fa-2x" style="color: white"></i>
         <h5 class="modal-title text-center" id="usersModalLabel" style="margin-left:10px">Usuarios Mayoristas</h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
       </div>
@@ -150,6 +152,45 @@ switch ($_SESSION["rol"]) {
       </div>
       <div class="modal-footer">
         <button type="button" id="modificar" class="btn btn-primary boton_registro">Cambiar</button>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="modal fade bd-example-modal-lg" id="logModal" tabindex="-1" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <i class="fas fa-database fa-2x" style="color: white"></i>
+        <h5 class="modal-title text-center" id="usersModalLabel" style="margin-left:10px">Registro de Actividades</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+      </div>
+      <div class="modal-body modal1">
+      <table class="table table-dark">
+          <thead>
+            <tr>
+              <th scope="col">ID</th>
+              <th scope="col">Actividad</th>
+              <th scope="col">ID del Usuario</th>
+              <th scope="col">Fecha</th>
+            </tr>
+          </thead>
+          <tbody>
+            <?php
+            $log = new Log();
+            $actividades = $log->consultarLog();
+            foreach ($actividades as $actividad) {
+              echo "<tr>
+                      <td>" . $actividad->getId() . "</td>
+                      <td>" . $actividad->getActividad() . "</td>
+                      <td>" . $actividad->getUsuario() . "</td>
+                      <td>".$actividad->getFecha()."</td>
+                    </tr>";
+            }
+            ?>
+          </tbody>
+        </table>
+      </div>
+      <div class="modal-footer">
       </div>
     </div>
   </div>

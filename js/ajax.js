@@ -166,7 +166,7 @@ $(document).ready(function () {
     })
 
     $("#contCar").click(function(){
-        $("#contenido").load("presentacion/contenidoCarrito.php?user="+$(".contenidoUsuario").attr("id")+"&rol="+$(".contenidoUsuario").attr("name"));
+        $(".contenidoUsuario").load("presentacion/contenidoCarrito.php?user="+$(".contenidoUsuario").attr("id")+"&rol="+$(".contenidoUsuario").attr("name"));
     })
     
 });

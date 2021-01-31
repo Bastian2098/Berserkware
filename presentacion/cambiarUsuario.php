@@ -9,5 +9,8 @@ $usuarioComun = new Administrador($idUsuario, "", "", "", "", "", "", "");
 $usuarioComun->eliminarComun();
 $usuarioMayorista = new UsuarioMayorista($idUsuario, "", "", "", "", "", "", $_POST["nit"], $_POST["numTarj"]);
 $usuarioMayorista->asignarTipoUsuario();
+$usuarioMayorista->consultarUsuario();
+$log = new Log("", "El usuario ".$usuarioMayorista->getNombre()." ahora es mayorista", $usuarioMayorista->getId(), date("Y-m-d"));
+$log->insertarActividad();
 
 ?>

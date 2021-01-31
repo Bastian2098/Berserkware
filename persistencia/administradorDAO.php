@@ -42,6 +42,10 @@ class AdministradorDAO{
         return "select estado from Usuario where ID_USUARIO = ".$this->id."";
     }
 
+    function consultarNombre(){
+        return "select nombre from Usuario where ID_USUARIO = ".$this->id."";
+    }
+
     function eliminarComun(){
         return "delete from Comun where ID_USUARIO_FK = ".$this->id;
     }
