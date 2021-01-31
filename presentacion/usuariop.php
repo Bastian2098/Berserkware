@@ -24,6 +24,7 @@
                    
             </div>
         </div>
+       
         <div class="w-100">
      <nav class="navbar navbar-light bg-light">
   <div class="container-fluid">
@@ -33,7 +34,8 @@
     </form>
   </div>
 </nav>
-              <div class="w-100">
+            
+             <div class="w-100">
             <div id="carouselExampleFade" class="carousel slide carousel-fade" data-bs-ride="carousel">
   <div class="carousel-inner">
     <div class="carousel-item active">
@@ -62,9 +64,66 @@
   </a>
 </div>
         </div>
+        <div class="content">
+        <div class="w-100 ">
+        <h4 class="products">Productos</h4>
+        <div class="container">
+        
+
+        <div class="card publicidad">
+          <img src="../img/card1.jpg" alt="">
+          <h4>Las mejores marcas del mercado</h4>
+          <p>Berserkware te ofrece las mejores marcas que existen en el mundo </p>
+
         </div>
-      
+        <div class="card publicidad">
+          <img src="../img/card2.jpg" alt="">
+          <h4>Productos de alta calidad</h4>
+          <p>Berserkware ofrece los equipos mejor claificados a nivel global  </p>
+
+        </div>
+        <div class="card publicidad">
+          <img src="../img/card3.jpg" alt="">
+          <h4>Alta experiencia en productos de tecnología</h4>
+          <p>Berserkware lleva mas de 25 años en el mercado  </p>
+
+        </div>
+        <h4 class="catalog">Catalogo de productos</h4>
+        <div class="container">
+        
+           <div class="card ">
+          <img src="../img/example.jpg" alt="">
+          <h4 class="product">ingresear nombre del producto</h4>
+          <h5 class="precio ">Ingresar</h5>
+          <button class=" button btn-block"  data-toggle="modal" data-target="#exampleModalCenter"><span>Comprar</span></button>
+        </div>
+        <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        ...
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
     </div>
+  </div>
+</div>
+        </div>
+        </div>
+</div>
+             </div>
+        </div>
+     
+      
+    
 
 
 
