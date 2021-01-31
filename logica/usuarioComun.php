@@ -81,8 +81,43 @@ class UsuarioComun extends Usuario{
         $this->nombre = $resultado[0];
     }
 
+    function consultarTodo(){
+        $this->conexion->abrir();
+        $this->conexion->ejecutar($this->usuarioComunDAO->consultarTodo());
+        $this->conexion->cerrar();
+        $resultado = $this->conexion->extraer();
+        $this->nombre = $resultado[0];
+        $this->cc = $resultado[1];
+        $this->direccion = $resultado[2];
+        $this->telefono = $resultado[3];
+    }
+
     function modificarUsuario(){
         return null;
+    }
+
+    function modificarNombre($nuevoNombre){
+        $this->conexion->abrir();
+        $this->conexion->ejecutar($this->usuarioComunDAO->modificarNombre($nuevoNombre));
+        $this->conexion->cerrar();
+    }
+
+    function modificarCc($nuevoCc){
+        $this->conexion->abrir();
+        $this->conexion->ejecutar($this->usuarioComunDAO->modificarCc($nuevoCc));
+        $this->conexion->cerrar();
+    }
+
+    function modificarDireccion($nuevoDireccion){
+        $this->conexion->abrir();
+        $this->conexion->ejecutar($this->usuarioComunDAO->modificarDireccion($nuevoDireccion));
+        $this->conexion->cerrar();
+    }
+
+    function modificarTelefono($nuevoTelefono){
+        $this->conexion->abrir();
+        $this->conexion->ejecutar($this->usuarioComunDAO->modificarTelefono($nuevoTelefono));
+        $this->conexion->cerrar();
     }
 
     function crearUsuario(){

@@ -1,6 +1,5 @@
 $(document).ready(function () {
 
-    const formulario = document.getElementById("formRegistrar");
     const inputs = document.querySelectorAll("#formRegistrar input");
 
     const expresiones = {
@@ -91,32 +90,83 @@ $(document).ready(function () {
         input.addEventListener("blur", validarForm);
     });
 
-    formulario.addEventListener("submit", (e) => {
-        e.preventDefault();
+    $("#registrar").click(function () {
         if (campos.nombre && campos.cc && campos.correo && campos.telefono && campos.direccion && campos.contraseña) {
-            $("#registrar").click(function () {
-                console.log("click");
-                var data = { nombre: $("#nombre").val(), cc: $("#cc").val(), correo: $("#correo").val(), telefono: $("#telefono").val(), direccion: $("#direccion").val(), contraseña: $("#contraseña").val() }
-                $.post(
-                    "presentacion/registrar.php",
-                    {
-                        data: data
-                    },
-                    function () {
-                        Swal.fire({
-                            position: 'center',
-                            icon: 'success',
-                            title: 'Usuario registrado',
-                            showConfirmButton: false,
-                            timer: 2000
-                        }).then(function () {
-                            $("#exampleModal").modal("hide")
-                        });
-                    }
-                )
-            });
+            var data = { nombre: $("#nombre").val(), cc: $("#cc").val(), correo: $("#correo").val(), telefono: $("#telefono").val(), direccion: $("#direccion").val(), contraseña: $("#contraseña").val() }
+            $.post(
+                "presentacion/registrar.php",
+                {
+                    data: data
+                },
+                function () {
+                    Swal.fire({
+                        position: 'center',
+                        icon: 'success',
+                        title: 'Usuario registrado',
+                        showConfirmButton: false,
+                        timer: 2000
+                    }).then(function () {
+                        $("#exampleModal").modal("hide")
+                    });
+                }
+            )
         } else {
             $(".errorMsgFull").addClass("errorMsgFull-active");
         }
-    });
-})
+    })
+
+    $(".iconoEstado").click(function () {
+        $.get(
+            "presentacion/cambiarEstado.php",
+            {
+                id: $(this).attr("id")
+            },
+            function () {
+                Swal.fire({
+                    position: 'center',
+                    icon: 'success',
+                    title: 'El estado ha sido cambiado',
+                    showConfirmButton: false,
+                    timer: 1500
+                }).then(function () {
+                    location.reload();
+                });
+            }
+        )
+    })
+
+    $("#modificar").click(function () {
+        $.post(
+            "presentacion/cambiarUsuario.php",
+            {
+                id: $("#listUsers option:selected").attr("id"),
+                nit: $("#nit").val(),
+                numTarj: $("#numTarj").val(),
+            },
+            function () {
+                Swal.fire({
+                    position: 'center',
+                    icon: 'success',
+                    title: 'El tipo de usuario ha sido cambiado',
+                    showConfirmButton: false,
+                    timer: 1500
+                }).then(function () {
+                    location.reload();
+                });
+            }
+        )
+    })
+
+    $("#contPro").click(function(){
+        $(".contenidoUsuario").load("presentacion/contenidoProducto.php?user="+$(".contenidoUsuario").attr("id")+"&rol="+$(".contenidoUsuario").attr("name"));
+    })
+
+    $("#contPer").click(function(){
+        $(".contenidoUsuario").load("presentacion/contenidoPerfil.php?user="+$(".contenidoUsuario").attr("id")+"&rol="+$(".contenidoUsuario").attr("name"));
+    })
+
+    $("#contCar").click(function(){
+        $(".contenidoUsuario").load("presentacion/contenidoCarrito.php?user="+$(".contenidoUsuario").attr("id")+"&rol="+$(".contenidoUsuario").attr("name"));
+    })
+    
+});
